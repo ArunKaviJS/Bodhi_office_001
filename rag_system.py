@@ -127,7 +127,7 @@ if uploaded_file:
         query_embedding = embedding_model.embed_query(query)
 
         # Similarity search with scores
-        results = vectorstore.similarity_search_with_score(query, k=5)
+        results = vectorstore.similarity_search_with_score(query, k=1)
 
         # Filter cosine similarity >= 0.80
         filtered_docs = []
