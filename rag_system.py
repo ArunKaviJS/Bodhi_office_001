@@ -1,5 +1,6 @@
 import os
 import tempfile
+import numpy as np
 import streamlit as st
 from dotenv import load_dotenv
 from mistralai import Mistral
@@ -80,9 +81,9 @@ def extract_text_from_file(file_path):
 # --------------------------------------------------
 # Streamlit UI
 # --------------------------------------------------
-st.set_page_config(page_title="📘 Mistral + Azure RAG System", layout="wide")
+st.set_page_config(page_title="📘 BODHI POC MODEL", layout="wide")
 
-st.title("📘 RAG System using Mistral OCR + Azure OpenAI")
+st.title("📘 BODHI POC MODEL")
 
 uploaded_file = st.file_uploader("Upload PDF/Image", type=["pdf", "png", "jpg", "jpeg"])
 
@@ -93,7 +94,7 @@ if uploaded_file:
         tmp.write(uploaded_file.read())
         temp_path = tmp.name
 
-    with st.spinner("🔍 Running Mistral OCR..."):
+    with st.spinner("🔍BODHI THINKING"):
         raw_text = extract_text_from_file(temp_path)
 
     st.subheader("📄 Extracted Text")
@@ -110,7 +111,7 @@ if uploaded_file:
     # --------------------------------------------------
     # Create FAISS Vector Store
     # --------------------------------------------------
-    with st.spinner("📊 Creating Embeddings & FAISS Index..."):
+    with st.spinner("📊bODHI THINKING"):
         vectorstore = FAISS.from_documents(documents, embedding_model)
 
     st.success("✅ Document Indexed Successfully")
@@ -132,7 +133,7 @@ if uploaded_file:
         filtered_docs = []
         for doc, score in results:
             similarity = 1 - score  # Convert distance to similarity
-            if similarity >= 0.60:
+            if similarity >= 0.30:
                 filtered_docs.append(doc.page_content)
 
         if not filtered_docs:
@@ -153,7 +154,7 @@ Question:
 Provide a clear, structured answer.
 """
 
-            with st.spinner("🤖 Generating Answer using Azure OpenAI..."):
+            with st.spinner("🤖 BODHI THINING"):
                 response = llm.invoke(prompt)
 
             st.subheader("📌 Final Answer")
