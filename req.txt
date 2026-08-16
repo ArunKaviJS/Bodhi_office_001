@@ -1,8 +1,9 @@
 python-dotenv
-streamlit
-mistralai
-langchain-core 
-langchain-community 
-langchain-openai 
-langchain-text-splitters 
-faiss-cpu
+boto3
+pymongo
+openai
+fastapi
+uvicorn
+python-multipart
+pypdf
+python-docx
